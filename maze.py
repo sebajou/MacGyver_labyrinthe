@@ -30,7 +30,7 @@ rack
 y=1
 x=0
 rack[y][x] = "X"
-print(rack)s
+print(rack)
 #Alow to move Mac Gyver and control that Mac Gyver don't go trough the wall
 
 while not (y==13 and x==14):
