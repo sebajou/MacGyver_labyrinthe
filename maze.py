@@ -30,7 +30,10 @@ rack
 y=1
 x=0
 rack[y][x] = "X"
-print(rack)
+for j in range(14):
+    print("\n", end='')
+    for i in range(14):
+        print(rack[j][i], end='')
 #Alow to move Mac Gyver and control that Mac Gyver don't go trough the wall
 
 while not (y==13 and x==14):
@@ -71,9 +74,17 @@ while not (y==13 and x==14):
         #move right
     else:
         pass
-    print(rack)
+    for j in range(14):
+        print("\n", end='')
+        for i in range(14):
+            print(rack[j][i], end='')
+            
+
+#for i, carte in enumerate(liste_cartes):
+#		print("  {} - {}".format(i + 1, carte.nom))
+#print(a, end='')
 
 if (y==13 and x==14):
     print(rack)
-    for i in range(0,14):
+    for i in range(0,24):
                 print("You win !")
