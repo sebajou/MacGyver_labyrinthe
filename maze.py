@@ -16,17 +16,11 @@ This is a game where you drive Mac Gyver out of a maze.
 #                           email: sebajou@gmail.com
 #                           society: None
 #                           Initial date: November 2019
-#                           version: v1
+#                           Version: v1
 #                           History: None
 #                           Comment: This program is a game where you drive Mac Gyver 
 # out of a maze. 
 ##############################################################################################
-
-#load file maze_plan.txt in table of table (rack)
-maze = open("maze_plan.txt", "r")
-maze = maze.read()
-maze = maze.split("\n")
-rack = []
 
 #usefull function
 def print_maze(rack):
@@ -36,23 +30,39 @@ def print_maze(rack):
         for i in range(15):
             print(rack[j][i], end=' ')
 
-#setting up table of table wich contain the maze. 
-for line in maze:
-    list_line = []
-    for caractere in line: 
-        list_line.append(caractere)
-    rack.append(list_line)
+def win(victory):
+    """in case of victory"""
+    if victory:
+        print_maze(rack)
+        for i in range(0,24):
+                    print("You win !")
 
-#load Mac Gyver (X) at the entrance of maze, rack[y][x]
-y=1
-x=0
-rack[y][x] = "X"
-print_maze(rack)
+def setTable(maze):
+    """Setting up table of table wich contain the maze"""
+    rack = []
+    for line in maze:
+        list_line = []
+        for caractere in line: 
+            list_line.append(caractere)
+        rack.append(list_line)
+    return rack
 
-#Alow to move Mac Gyver and control that Mac Gyver don't go trough the wall
-while not (y==13 and x==14):
-    #input keyboard
-    direction = input("Wich direction you want to go? (upward u, downward n, left h, right j): ")
+def loadMaze():
+    """load file maze_plan.txt in table of table (rack)"""
+    maze = open("maze_plan.txt", "r")
+    maze = maze.read()
+    maze = maze.split("\n")
+    return maze
+
+def loadMacGyver(y,x):
+    """Load the initial position of Mac Gyver"""
+    rack[y][x] = "X"
+    return rack, y, x
+
+def move(direction, rack):
+    """allow MacGyver to move"""
+    global y
+    global x
     #move upward    
     if direction == "u": 
         rack[y][x] = "+"
@@ -88,12 +98,35 @@ while not (y==13 and x==14):
     #unapropriate keyboard
     else:
         pass
+
+    return rack
+
+#load file maze_plan.txt in table of table (rack)
+maze = loadMaze()
+
+#setting up table of table wich contain the maze. 
+rack = setTable(maze)
+
+#load Mac Gyver (X) at the entrance of maze, rack[y][x]
+rack, y, x = loadMacGyver(y=1,x=0)
+print_maze(rack)
+
+#Alow to move Mac Gyver and control that Mac Gyver don't go trough the wall
+victory = False
+while not victory:
+    #Out loop condition
+    if  y==13 and x==14:
+        victory = True
+    else:
+    #input keyboard
+        direction = input("Wich direction you want to go? (upward u, downward n, left h, right j): ")
+    
+    #moving Mac Gyver
+    rack = move(direction, rack)
+
     #Print maze
     print_maze(rack)
             
 
 #In case of victory
-if (y==13 and x==14):
-    print_maze(rack)
-    for i in range(0,24):
-                print("You win !")
+win(victory)
