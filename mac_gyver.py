@@ -5,12 +5,12 @@ class MacGyver:
     """
     This class allows positionment of MacGyver
     """
-    def loadMacGyver(rack, y,x):
+    def loadMacGyver(self, rack, y,x):
         """Load the initial position of Mac Gyver"""
         rack[y][x] = "X"
         return rack, y, x
 
-    def move(direction, rack, y, x):
+    def move(self, direction, rack, y, x):
         """allow MacGyver to move"""
         #move upward    
         if direction == "u": 
