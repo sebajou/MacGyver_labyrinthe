@@ -12,13 +12,17 @@ class TheMaze:
             for i in range(15):
                 print(rack[j][i], end=' ')
 
-    def win(self, victory, rack):
-        """in case of victory"""
+    def win(self, victory, die, rack):
+        """in case of victory or die"""
         TM = TheMaze()
         if victory:
             TM.print_maze(rack)
             for i in range(0,24):
-                        print("You win !")
+                print("You win !")
+        elif die:
+            
+            for i in range(0,24):
+                print("You die !")
 
     def setTable(self, maze):
         """Setting up table of table wich contain the maze"""
@@ -36,3 +40,11 @@ class TheMaze:
         maze = maze.read()
         maze = maze.split("\n")
         return maze
+
+    def exit(self, y ,x):
+        guard = False
+        if y==13 and x==14: 
+            guard = True
+        else: 
+            pass
+        return guard

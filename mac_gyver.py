@@ -49,3 +49,24 @@ class MacGyver:
             pass
 
         return rack, y, x
+
+    def gather(self, count, rack, y, x, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE):
+        """determine if an artefact is gather and count the number of gather artefact"""
+        if (y == y_artA and x == x_artA): 
+            count = count + 1
+            y_artA = None
+            x_artA = None
+            print("\n\nYou gather {0} artefact(s)\n". format(count))
+        elif (y == y_artT and x == x_artT): 
+            count = count + 1
+            y_artT = None
+            x_artT = None
+            print("\n\nYou gather {0} artefact(s)\n". format(count))
+        elif (y == y_artE and x == x_artE): 
+            count = count + 1
+            y_artE = None
+            x_artE = None
+            print("\n\nYou gather {0} artefact(s)\n". format(count))
+        else: 
+            pass
+        return count, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE
