@@ -22,14 +22,6 @@ class Artefact:
             else: 
                 self.getPosi = False
         return rack, y_art , x_art
-    
-    """def artefact_get(self, y, x): 
-        
-        Determine if an artefact is gather (and erase it from the maze). 
-        
-        self.gather = False
-        if rack
-        pass"""
 
 class Aiguille(Artefact):
     """
