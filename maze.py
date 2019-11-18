@@ -23,6 +23,7 @@ class TheMaze:
             
             for i in range(0,24):
                 print("You die !")
+            print("You die with a slow, painful death.")
 
     def setTable(self, maze):
         """Setting up table of table wich contain the maze"""
