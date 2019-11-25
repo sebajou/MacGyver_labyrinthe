@@ -76,4 +76,11 @@ class TubeElements(MazeElements):
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
-            pygame.image.load("./assets/images/ether.png").convert_alpha()
+            pygame.image.load("./assets/images/tube.png").convert_alpha()
+
+
+class PygameMacGyver(MazeElements):
+    def __init__(self):
+        MazeElements.__init__(self)
+        self.element_image = \
+            pygame.image.load("./assets/images/MacGyver.png").convert_alpha()

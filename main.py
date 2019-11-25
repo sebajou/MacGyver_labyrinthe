@@ -68,7 +68,7 @@ def main():
     # BM = MazeElements()
 
     # Print the maze.
-    TM.print_maze(rack)
+    # TM.print_maze(rack)
 
     # Loop for run the game and pick up instruction.
     guard = False
@@ -81,24 +81,6 @@ def main():
         # Pygame control FPS.
         delta_ms = clock.tick(FPS)
 
-        # Pygame lisen instruction.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            """if event.type == KEYDOWN:
-                # Mac Gyver go down.
-                if event.key == K_DOWN:
-                    direction = "n"
-                # Mac Gyver go up.
-                if event.key == K_UP:
-                    direction = "u"
-                # Mac Gyver go right.
-                if event.key == K_RIGHT:
-                    direction = "j"
-                # Mac Gyver go left.
-                if event.key == K_LEFT:
-                    direction = "h"
-            """
         # Pygame display maze elements.
         for y_maze in range(15):
             for x_maze in range(15):
@@ -132,18 +114,40 @@ def main():
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = GE.loadAndPrint()
                     GE.pygame_display(screen, position)
-
-        # pygame.time.delay(2000)
+                elif rack[y_maze][x_maze] == "X":
+                    MGE = PygameMacGyver()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = MGE.loadAndPrint()
+                    MGE.pygame_display(screen, position)
 
         # Input keyboard.
-        direction = input("Wich direction you want to go? \
-            (upward u, downward n, left h, right j): ")
+        """direction = input("Wich direction you want to go? \
+            (upward u, downward n, left h, right j): ")"""
+        direction = None
 
+        # Pygame lisen instruction.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == KEYDOWN:
+                # Mac Gyver go down.
+                if event.key == K_DOWN:
+                    direction = "n"
+                # Mac Gyver go up.
+                if event.key == K_UP:
+                    direction = "u"
+                # Mac Gyver go right.
+                if event.key == K_RIGHT:
+                    direction = "j"
+                # Mac Gyver go left.
+                if event.key == K_LEFT:
+                    direction = "h"
+    
         # Moving Mac Gyver.
         rack, y, x = MG.move(direction, rack, y, x)
 
         # Print maze.
-        TM.print_maze(rack)
+        # TM.print_maze(rack)
 
         # Counter of artefacts.
         count, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE \
