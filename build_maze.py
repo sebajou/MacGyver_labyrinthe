@@ -18,26 +18,34 @@ def pygame_initialisation():
 
 class MazeElements:
     """
-    Mother class of Maze's elements.
+    Mother class of Maze's elements (wall, floor, artefact, guard).
     During instantiation build an elements of Maze (wall, guard or floor).
-    + Methdod __init__, :
+    + Methdod "__init__" load the image of maze elements.
+    + Method "loadAndPrint" create a surface for image to display.
+    + Method "pygame_display" display the image.
     """
     def __init__(self):
+        """Load the image of element"""
         self.element_image = \
             pygame.image.load("./assets/images/seringueO.png").convert_alpha()
 
     def loadAndPrint(self):
+        """Create the surface for image display"""
         # Pygame print wall.
         element_surface = pygame.Surface((ELEMENT_HEIGTH, ELEMENT_WIDTH))
         element_surface.fill(COLOR_ELEMENT)
         # Load of wall image.
 
     def pygame_display(self, screen, position):
+        """display the image on the screen"""
         screen.blit(self.element_image, position)
         pygame.display.flip()
 
 
 class WallElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -45,6 +53,9 @@ class WallElements(MazeElements):
 
 
 class FloorElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -52,6 +63,9 @@ class FloorElements(MazeElements):
 
 
 class GuardElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -59,6 +73,9 @@ class GuardElements(MazeElements):
 
 
 class AiguilleElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -66,6 +83,9 @@ class AiguilleElements(MazeElements):
 
 
 class EtherElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -73,6 +93,9 @@ class EtherElements(MazeElements):
 
 
 class TubeElements(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \
@@ -80,6 +103,9 @@ class TubeElements(MazeElements):
 
 
 class PygameMacGyver(MazeElements):
+    """
+    This is a MazeElements daughter class.
+    """
     def __init__(self):
         MazeElements.__init__(self)
         self.element_image = \

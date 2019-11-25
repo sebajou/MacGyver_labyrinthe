@@ -29,10 +29,13 @@ class TheMaze:
             for i in range(15):
                 print(rack[j][i], end=' ')
 
-    def win(self, victory, die, rack):
+    def win(self, victory, die, rack, screen):
         """In case of victory or die."""
         TM = TheMaze()
+        # myfont = pygame.font.Font("./assets/fonts/free.ttf", 20)
         if victory:
+            # label = myfont.render("You win !", 1, COLOR_YELLOW)
+            # screen.blit(label, (10, 10))
             TM.print_maze(rack)
             for i in range(0, 24):
                 print("You win !")

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*-coding:Utf-8 -*
+# -*-coding:Utf-8 -* *
 
 
 class MacGyver:
@@ -85,6 +85,11 @@ class MacGyver:
             count = count + 1
             y_artA = None
             x_artA = None
+            # myfont = pygame.font.Font("./assets/fonts/free.ttf", 100)
+            # label = myfont.render(
+            # "You gather 1 artefacts !", 1, COLOR_YELLOW
+            # )
+            # screen.blit(label, (10, 10))
             print("\n\nYou gather {0} artefact(s)\n". format(count))
         elif (y == y_artT and x == x_artT):
             count = count + 1

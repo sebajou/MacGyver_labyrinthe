@@ -39,10 +39,6 @@ def main():
     # Pygame initialisation and display setting.
     clock, screen = pygame_initialisation()
 
-    # Pygame print wall.
-    # wall = Wall()
-    # wall_image, wall_rectangle = wall.loadAndPrint()
-
     # Instancition.
     MG = MacGyver()
     TM = TheMaze()
@@ -64,12 +60,6 @@ def main():
     # Load Mac Gyver (X) at the entrance of maze, rack[y][x].
     rack, y, x = MG.loadMacGyver(rack=rack, y=1, x=0)
 
-    # Print in pygame screen the maze with all elements.
-    # BM = MazeElements()
-
-    # Print the maze.
-    # TM.print_maze(rack)
-
     # Loop for run the game and pick up instruction.
     guard = False
     count = 0
@@ -81,7 +71,8 @@ def main():
         # Pygame control FPS.
         delta_ms = clock.tick(FPS)
 
-        # Pygame display maze elements.
+        # Pygame display maze elements according to build_maze module
+        # and according to maze_plan.txt load in rack table.
         for y_maze in range(15):
             for x_maze in range(15):
                 if rack[y_maze][x_maze] == "M":
@@ -142,12 +133,13 @@ def main():
                 # Mac Gyver go left.
                 if event.key == K_LEFT:
                     direction = "h"
-    
+
         # Moving Mac Gyver.
         rack, y, x = MG.move(direction, rack, y, x)
 
-        # Print maze.
-        # TM.print_maze(rack)
+        # myfont = pygame.font.Font("./assets/fonts/free.ttf", 200)
+        # label = myfont.render("Test", 1, COLOR_YELLOW)
+        # screen.blit(label, (10, 10))
 
         # Counter of artefacts.
         count, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE \
@@ -155,7 +147,7 @@ def main():
                 count=count, rack=rack, y=y, x=x,
                 y_artA=y_artA, x_artA=x_artA,
                 y_artT=y_artT, x_artT=x_artT,
-                y_artE=y_artE, x_artE=x_artE
+                y_artE=y_artE, x_artE=x_artE,
                 )
 
         # Determin if Mac Gyver are at Guard position ?
@@ -163,6 +155,7 @@ def main():
 
         # Out loop condition.
         if guard and count == 3:
+            # pygame.time.delay(5000)
             victory = True
             running = False
         elif guard and (count != 3):
@@ -172,7 +165,7 @@ def main():
             pass
 
     # At exit, die or victory.
-    TM.win(victory, die, rack)
+    TM.win(victory, die, rack, screen)
 
     # Close Pygame and free ressources.
     pygame.quit()
