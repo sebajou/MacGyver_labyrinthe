@@ -60,6 +60,11 @@ def main():
     # Load Mac Gyver (X) at the entrance of maze, rack[y][x].
     rack, y, x = MG.loadMacGyver(rack=rack, y=1, x=0)
 
+    # Music
+    pygame.mixer.music.load("./assets/music/MacGyverSong.ogg")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1)
+
     # Loop for run the game and pick up instruction.
     guard = False
     count = 0
@@ -73,43 +78,7 @@ def main():
 
         # Pygame display maze elements according to build_maze module
         # and according to maze_plan.txt load in rack table.
-        for y_maze in range(15):
-            for x_maze in range(15):
-                if rack[y_maze][x_maze] == "M":
-                    WE = WallElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = WE.loadAndPrint()
-                    WE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "+":
-                    FE = FloorElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = FE.loadAndPrint()
-                    FE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "A":
-                    AE = AiguilleElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = AE.loadAndPrint()
-                    AE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "E":
-                    EE = EtherElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = EE.loadAndPrint()
-                    EE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "T":
-                    TE = TubeElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = TE.loadAndPrint()
-                    TE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "G":
-                    GE = GuardElements()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = GE.loadAndPrint()
-                    GE.pygame_display(screen, position)
-                elif rack[y_maze][x_maze] == "X":
-                    MGE = PygameMacGyver()
-                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = MGE.loadAndPrint()
-                    MGE.pygame_display(screen, position)
+        pygame_display(rack, screen)
 
         # Input keyboard.
         """direction = input("Wich direction you want to go? \

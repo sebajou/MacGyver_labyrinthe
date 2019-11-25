@@ -16,6 +16,46 @@ def pygame_initialisation():
     return clock, screen
 
 
+def pygame_display(rack, screen):
+    for y_maze in range(15):
+        for x_maze in range(15):
+            if rack[y_maze][x_maze] == "M":
+                WE = WallElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = WE.loadAndPrint()
+                WE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "+":
+                FE = FloorElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = FE.loadAndPrint()
+                FE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "A":
+                AE = AiguilleElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = AE.loadAndPrint()
+                AE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "E":
+                EE = EtherElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = EE.loadAndPrint()
+                EE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "T":
+                TE = TubeElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = TE.loadAndPrint()
+                TE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "G":
+                GE = GuardElements()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = GE.loadAndPrint()
+                GE.pygame_display(screen, position)
+            elif rack[y_maze][x_maze] == "X":
+                MGE = PygameMacGyver()
+                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                element_image = MGE.loadAndPrint()
+                MGE.pygame_display(screen, position)
+
+
 class MazeElements:
     """
     Mother class of Maze's elements (wall, floor, artefact, guard).
