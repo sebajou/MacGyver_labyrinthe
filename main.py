@@ -26,10 +26,23 @@ This is a game where you drive Mac Gyver out of a maze.
 from mac_gyver import *
 from maze import*
 import artefacts
+import pygame
+from pygame.locals import *
+from sys import exit
+from constantes import *
+from build_maze import *
 
 
 def main():
     """Function of general game cook."""
+
+    # Pygame initialisation and display setting.
+    clock, screen = pygame_initialisation()
+
+    # Pygame print wall.
+    # wall = Wall()
+    # wall_image, wall_rectangle = wall.loadAndPrint()
+
     # Instancition.
     MG = MacGyver()
     TM = TheMaze()
@@ -51,6 +64,9 @@ def main():
     # Load Mac Gyver (X) at the entrance of maze, rack[y][x].
     rack, y, x = MG.loadMacGyver(rack=rack, y=1, x=0)
 
+    # Print in pygame screen the maze with all elements.
+    # BM = MazeElements()
+
     # Print the maze.
     TM.print_maze(rack)
 
@@ -59,8 +75,66 @@ def main():
     count = 0
     victory = False
     die = False
+    running = True
 
-    while not victory:
+    while running:
+        # Pygame control FPS.
+        delta_ms = clock.tick(FPS)
+
+        # Pygame lisen instruction.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            """if event.type == KEYDOWN:
+                # Mac Gyver go down.
+                if event.key == K_DOWN:
+                    direction = "n"
+                # Mac Gyver go up.
+                if event.key == K_UP:
+                    direction = "u"
+                # Mac Gyver go right.
+                if event.key == K_RIGHT:
+                    direction = "j"
+                # Mac Gyver go left.
+                if event.key == K_LEFT:
+                    direction = "h"
+            """
+        # Pygame display maze elements.
+        for y_maze in range(15):
+            for x_maze in range(15):
+                if rack[y_maze][x_maze] == "M":
+                    ME = MazeElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = ME.loadAndPrint()
+                    ME.pygame_display(screen, element_image, position)
+                elif rack[y_maze][x_maze] == "+":
+                    FE = FloorElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = FE.loadAndPrint()
+                    FE.pygame_display(screen, element_image, position)
+                elif rack[y_maze][x_maze] == "A":
+                    AE = AiguilleElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = AE.loadAndPrint()
+                    AE.pygame_display(screen, element_image, position)
+                elif rack[y_maze][x_maze] == "E":
+                    EE = EtherElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = EE.loadAndPrint()
+                    EE.pygame_display(screen, element_image, position)
+                elif rack[y_maze][x_maze] == "T":
+                    TE = TubeElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = TE.loadAndPrint()
+                    TE.pygame_display(screen, element_image, position)
+                elif rack[y_maze][x_maze] == "G":
+                    GE = GuardElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = GE.loadAndPrint()
+                    GE.pygame_display(screen, element_image, position)
+
+        # pygame.time.delay(2000)
+
         # Input keyboard.
         direction = input("Wich direction you want to go? \
             (upward u, downward n, left h, right j): ")
@@ -86,14 +160,21 @@ def main():
         # Out loop condition.
         if guard and count == 3:
             victory = True
+            running = False
         elif guard and (count != 3):
             die = True
-            break
+            running = False
         else:
             pass
 
     # At exit, die or victory.
     TM.win(victory, die, rack)
+
+    # Close Pygame and free ressources.
+    pygame.quit()
+    exit()
+
+    return 0
 
 
 # Execute "main" funciton like main code.
