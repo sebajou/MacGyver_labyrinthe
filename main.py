@@ -103,35 +103,35 @@ def main():
         for y_maze in range(15):
             for x_maze in range(15):
                 if rack[y_maze][x_maze] == "M":
-                    ME = MazeElements()
+                    WE = WallElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                    element_image = ME.loadAndPrint()
-                    ME.pygame_display(screen, element_image, position)
+                    element_image = WE.loadAndPrint()
+                    WE.pygame_display(screen, position)
                 elif rack[y_maze][x_maze] == "+":
                     FE = FloorElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = FE.loadAndPrint()
-                    FE.pygame_display(screen, element_image, position)
+                    FE.pygame_display(screen, position)
                 elif rack[y_maze][x_maze] == "A":
                     AE = AiguilleElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = AE.loadAndPrint()
-                    AE.pygame_display(screen, element_image, position)
+                    AE.pygame_display(screen, position)
                 elif rack[y_maze][x_maze] == "E":
                     EE = EtherElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = EE.loadAndPrint()
-                    EE.pygame_display(screen, element_image, position)
+                    EE.pygame_display(screen, position)
                 elif rack[y_maze][x_maze] == "T":
                     TE = TubeElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = TE.loadAndPrint()
-                    TE.pygame_display(screen, element_image, position)
+                    TE.pygame_display(screen, position)
                 elif rack[y_maze][x_maze] == "G":
                     GE = GuardElements()
                     position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
                     element_image = GE.loadAndPrint()
-                    GE.pygame_display(screen, element_image, position)
+                    GE.pygame_display(screen, position)
 
         # pygame.time.delay(2000)
 
