@@ -63,6 +63,7 @@ class MazeElements:
     + Methdod "__init__" load the image of maze elements.
     + Method "loadAndPrint" create a surface for image to display.
     + Method "pygame_display" display the image.
+        - Parameters: screen is the screen, position is position where display.
     """
     def __init__(self):
         """Load the image of element"""
