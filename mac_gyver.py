@@ -86,16 +86,13 @@ class MacGyver:
         Determine if an artefact is gather
         and count the number of gather artefact.
         """
+        # Instantiation of message classe.
         SD = Sound_and_message()
+        # From position determine if artefact is gather.
         if (y == y_artA and x == x_artA):
             count = count + 1
             y_artA = None
             x_artA = None
-            # myfont = pygame.font.Font("./assets/fonts/free.ttf", 100)
-            # label = myfont.render(
-            # "You gather 1 artefacts !", 1, COLOR_YELLOW
-            # )
-            # screen.blit(label, (10, 10))
             SD.gather_message(count, screen)
             print("\n\nYou gather {0} artefact(s)\n". format(count))
         elif (y == y_artT and x == x_artT):

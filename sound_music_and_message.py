@@ -15,6 +15,7 @@ class Sound_and_message():
     and count the number of gathered message.
     """
     def victory(self, screen):
+        """Action for victory."""
         # Print a message for the winner.
         self.myfont = pygame.font.Font("./assets/fonts/free.ttf", 40)
         label = self.myfont.render("You win !", 1, COLOR_BLUE)
@@ -30,8 +31,9 @@ class Sound_and_message():
         pygame.time.delay(self.length)
 
     def death(self, screen):
+        """Action for the loser."""
         # Print a message for the loser.
-        self.myfont = pygame.font.Font("./assets/fonts/free.ttf", 20)
+        self.myfont = pygame.font.Font("./assets/fonts/free.ttf", 30)
         label = self.myfont.render(
             "You die with a slow, painful death.", 1, COLOR_BLUE
             )
@@ -47,7 +49,7 @@ class Sound_and_message():
         pygame.time.delay(self.length)
 
     def gather_message(self, count, screen):
-        # Print a message after gather artefact.
+        """Print a message after gather artefact."""
         self.myfont = pygame.font.Font("./assets/fonts/free.ttf", 40)
         self.message = ("You gather {0} artefact(s)". format(count))
         label = self.myfont.render(
@@ -56,3 +58,9 @@ class Sound_and_message():
         screen.blit(label, (10, 10))
         pygame.display.flip()
         pygame.time.delay(1000)
+
+    def play_music(self):
+        """Play a tune."""
+        pygame.mixer.music.load("./assets/music/MacGyverSong.ogg")
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(-1)

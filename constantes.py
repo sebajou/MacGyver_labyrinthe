@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*-coding:Utf-8 -*
 
+"""Contain constante use in the game."""
 
 SCREEN_HEIGTH = 600
 SCREEN_WIDTH = 600

@@ -16,51 +16,13 @@ def pygame_initialisation():
     return clock, screen
 
 
-def pygame_display(rack, screen):
-    for y_maze in range(15):
-        for x_maze in range(15):
-            if rack[y_maze][x_maze] == "M":
-                WE = WallElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = WE.loadAndPrint()
-                WE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "+":
-                FE = FloorElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = FE.loadAndPrint()
-                FE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "A":
-                AE = AiguilleElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = AE.loadAndPrint()
-                AE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "E":
-                EE = EtherElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = EE.loadAndPrint()
-                EE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "T":
-                TE = TubeElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = TE.loadAndPrint()
-                TE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "G":
-                GE = GuardElements()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = GE.loadAndPrint()
-                GE.pygame_display(screen, position)
-            elif rack[y_maze][x_maze] == "X":
-                MGE = PygameMacGyver()
-                position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
-                element_image = MGE.loadAndPrint()
-                MGE.pygame_display(screen, position)
-
-
 class MazeElements:
     """
     Mother class of Maze's elements (wall, floor, artefact, guard).
     During instantiation build an elements of Maze (wall, guard or floor).
     + Methdod "__init__" load the image of maze elements.
+    + Method "pygame_maze_display" from table containing the maze display
+    image of each sprites on the screen.
     + Method "loadAndPrint" create a surface for image to display.
     + Method "pygame_display" display the image.
         - Parameters: screen is the screen, position is position where display.
@@ -70,6 +32,46 @@ class MazeElements:
         self.element_image = \
             pygame.image.load("./assets/images/seringueO.png").convert_alpha()
 
+    def pygame_maze_display(self, rack, screen):
+        """Display image of the maze for each sprites."""
+        for y_maze in range(15):
+            for x_maze in range(15):
+                if rack[y_maze][x_maze] == "M":
+                    WE = WallElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = WE.loadAndPrint()
+                    WE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "+":
+                    FE = FloorElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = FE.loadAndPrint()
+                    FE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "A":
+                    AE = AiguilleElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = AE.loadAndPrint()
+                    AE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "E":
+                    EE = EtherElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = EE.loadAndPrint()
+                    EE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "T":
+                    TE = TubeElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = TE.loadAndPrint()
+                    TE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "G":
+                    GE = GuardElements()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = GE.loadAndPrint()
+                    GE.pygame_display(screen, position)
+                elif rack[y_maze][x_maze] == "X":
+                    MGE = PygameMacGyver()
+                    position = (ELEMENT_HEIGTH*x_maze, ELEMENT_WIDTH*y_maze)
+                    element_image = MGE.loadAndPrint()
+                    MGE.pygame_display(screen, position)
+                    
     def loadAndPrint(self):
         """Create the surface for image display"""
         # Pygame print wall.

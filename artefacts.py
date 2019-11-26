@@ -17,6 +17,7 @@ class Artefact:
         and return artefact position ("y_art" and "x_art").
     """
     def __init__(self):
+        """Determine the symbol for artefact in console maze."""
         self.artefact = "F"
 
     def loadArtefact(self, rack):

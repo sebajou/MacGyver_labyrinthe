@@ -7,7 +7,7 @@ This is a game where you drive Mac Gyver out of a maze.
 
 ###############################################################################
 # =============================================================================
-#                           title: Mac Gyver maze
+#                           title: Mac Gyver Maze
 # =============================================================================
 #                           author: Sébastien Jourdan
 #                                    /-\
@@ -26,8 +26,7 @@ This is a game where you drive Mac Gyver out of a maze.
 from mac_gyver import *
 from maze import*
 import artefacts
-import pygame
-from pygame.locals import *
+from sound_music_and_message import *
 from sys import exit
 from constantes import *
 from build_maze import *
@@ -40,11 +39,13 @@ def main():
     clock, screen = pygame_initialisation()
 
     # Instancition.
+    ME = MazeElements()
     MG = MacGyver()
     TM = TheMaze()
     AA = artefacts.Aiguille()
     AT = artefacts.Tube()
     AE = artefacts.Ether()
+    SD = Sound_and_message()
 
     # Load file maze_plan.txt in table of table (rack).
     oneMaze = TM.loadMaze()
@@ -61,9 +62,7 @@ def main():
     rack, y, x = MG.loadMacGyver(rack=rack, y=1, x=0)
 
     # Music
-    pygame.mixer.music.load("./assets/music/MacGyverSong.ogg")
-    pygame.mixer.music.set_volume(0.5)
-    pygame.mixer.music.play(-1)
+    SD.play_music()
 
     # Loop for run the game and pick up instruction.
     guard = False
@@ -78,11 +77,9 @@ def main():
 
         # Pygame display maze elements according to build_maze module
         # and according to maze_plan.txt load in rack table.
-        pygame_display(rack, screen)
+        ME.pygame_maze_display(rack, screen)
 
-        # Input keyboard.
-        """direction = input("Wich direction you want to go? \
-            (upward u, downward n, left h, right j): ")"""
+        # variable initialisation.
         direction = None
 
         # Pygame lisen instruction.
@@ -106,10 +103,6 @@ def main():
         # Moving Mac Gyver.
         rack, y, x = MG.move(direction, rack, y, x)
 
-        # myfont = pygame.font.Font("./assets/fonts/free.ttf", 200)
-        # label = myfont.render("Test", 1, COLOR_YELLOW)
-        # screen.blit(label, (10, 10))
-
         # Counter of artefacts.
         count, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE \
             = MG.gather(
@@ -125,7 +118,6 @@ def main():
 
         # Out loop condition.
         if guard and count == 3:
-            # pygame.time.delay(5000)
             victory = True
             running = False
         elif guard and (count != 3):
