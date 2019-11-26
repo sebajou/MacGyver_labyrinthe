@@ -117,6 +117,7 @@ def main():
                 y_artA=y_artA, x_artA=x_artA,
                 y_artT=y_artT, x_artT=x_artT,
                 y_artE=y_artE, x_artE=x_artE,
+                screen=screen
                 )
 
         # Determin if Mac Gyver are at Guard position ?

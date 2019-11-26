@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*-coding:Utf-8 -* *
 
+from sound_music_and_message import *
+
 
 class MacGyver:
     """
@@ -75,12 +77,16 @@ class MacGyver:
         return rack, y, x
 
     def gather(
-        self, count, rack, y, x, y_artA, x_artA, y_artT, x_artT, y_artE, x_artE
+        self, count, rack,
+        y, x,
+        y_artA, x_artA, y_artT, x_artT, y_artE, x_artE,
+        screen
             ):
         """
         Determine if an artefact is gather
         and count the number of gather artefact.
         """
+        SD = Sound_and_message()
         if (y == y_artA and x == x_artA):
             count = count + 1
             y_artA = None
@@ -90,16 +96,19 @@ class MacGyver:
             # "You gather 1 artefacts !", 1, COLOR_YELLOW
             # )
             # screen.blit(label, (10, 10))
+            SD.gather_message(count, screen)
             print("\n\nYou gather {0} artefact(s)\n". format(count))
         elif (y == y_artT and x == x_artT):
             count = count + 1
             y_artT = None
             x_artT = None
+            SD.gather_message(count, screen)
             print("\n\nYou gather {0} artefact(s)\n". format(count))
         elif (y == y_artE and x == x_artE):
             count = count + 1
             y_artE = None
             x_artE = None
+            SD.gather_message(count, screen)
             print("\n\nYou gather {0} artefact(s)\n". format(count))
         else:
             pass
