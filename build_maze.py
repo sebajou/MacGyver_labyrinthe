@@ -74,10 +74,9 @@ class MazeElements:
                     
     def loadAndPrint(self):
         """Create the surface for image display"""
-        # Pygame print wall.
+        # Pygame print maze elements.
         element_surface = pygame.Surface((ELEMENT_HEIGTH, ELEMENT_WIDTH))
         element_surface.fill(COLOR_ELEMENT)
-        # Load of wall image.
 
     def pygame_display(self, screen, position):
         """display the image on the screen"""
