@@ -30,8 +30,6 @@ from sound_music_and_message import *
 from sys import exit
 from constantes import *
 from build_maze import *
-import pygame
-from pygame.locals import *
 
 
 def main():
